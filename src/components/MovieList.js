@@ -20,7 +20,7 @@ const MovieList = (props) => {
 
   const movies = props.movieState.movieList.map((movie) => (
     <li key={movie.id}>
-      <Link to={`/movies/${movie.id}`}>{movie.original_title}</Link>
+      <Link to={`/movies/${movie.id}`}>{movie.original_title} </Link>
     </li>
   ))
 

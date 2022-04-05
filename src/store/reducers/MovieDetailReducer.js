@@ -1,12 +1,12 @@
 const { GET_MOVIE_DETAILS, GET_MOVIES } = require('../types')
 
 const iState = {
-  details: []
+  details: {}
 }
 
 const MovieDetailReducer = (state = iState, action) => {
   switch (action.type) {
-    case GET_MOVIES:
+    case GET_MOVIE_DETAILS:
       return { ...state, details: action.payload }
     default:
       return { ...state }

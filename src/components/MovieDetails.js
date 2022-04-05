@@ -3,8 +3,8 @@ import { useParams } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { LoadMovieDetails } from '../store/actions/MovieActions'
 
-const mapStateToProps = ({ detailState }) => {
-  return { detailState }
+const mapStateToProps = ({ detailsState }) => {
+  return { detailsState }
 }
 
 const mapDispatchToProps = (dispatch) => {
@@ -14,22 +14,26 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 const MovieDetails = (props) => {
-  let { id } = useParams()
+  const { id } = useParams()
 
   useEffect(() => {
     props.fetchMovieDetails(id)
+    console.log(id)
   }, [id])
 
+  const title = props.detailsState.details.original_title
+  const overview = props.detailsState.details.overview
+  const rating = props.detailsState.details.vote_average
+  const image = props.detailsState.details.backdrop_path
+
   return (
-    <ul>
-      {props.detailState.details.length ? (
-        props.detailState.details.map((detail) => (
-          <li key={detail.id}>{detail.description}</li>
-        ))
-      ) : (
-        <h3>No Detail</h3>
-      )}
-    </ul>
+    <div>
+      <h4>{title}</h4>
+      <h5>{overview} </h5>
+      <h5>Rating: {rating}</h5>
+      <img src={`https://image.tmdb.org/t/p/w500${image}`} />
+    </div>
   )
 }
-export default connect(mapDispatchToProps, mapStateToProps)(MovieDetails)
+
+export default connect(mapStateToProps, mapDispatchToProps)(MovieDetails)
