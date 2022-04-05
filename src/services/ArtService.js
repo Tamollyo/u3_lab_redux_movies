@@ -17,7 +17,7 @@ export const GetMovieDetails = async (id) => {
     const res = await Client.get(
       `/3/movie/${id}?api_key=${API_KEY}&language=en-US`
     )
-    return res.data.results
+    return res.data
   } catch (error) {
     throw error
   }
